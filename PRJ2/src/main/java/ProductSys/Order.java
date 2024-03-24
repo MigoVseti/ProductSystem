@@ -1,13 +1,14 @@
 package ProductSys;
 
 public class Order implements Document {
+    private static int idCounter = 1;
     private int id;
     private String name;
     private int quantity;
     private Invoice invoice;
 
-    public Order(int id, String name, int quantity) {
-        this.id = id;
+    public Order(String name, int quantity) {
+        this.id = idCounter++;
         this.name = name;
         this.quantity = quantity;
     }

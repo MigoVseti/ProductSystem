@@ -1,11 +1,12 @@
 package ProductSys;
 
 public class Waybill implements Document {
+    private static int idCounter = 1;
     private int id;
     private String paymentType;
 
-    public Waybill(int id, String paymentType) {
-        this.id = id;
+    public Waybill(String paymentType) {
+        this.id = idCounter++;
         this.paymentType = paymentType;
     }
 

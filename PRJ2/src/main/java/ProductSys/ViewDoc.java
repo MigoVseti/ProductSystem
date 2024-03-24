@@ -1,31 +1,38 @@
 package ProductSys;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class ViewDoc {
-    private ArrayList<Document> documents = new ArrayList<>();
+    private List<Document> documents = new ArrayList<>();
 
     public ViewDoc() {
-        Order order = new Order(1, "Хлеб", 2);
-        Invoice invoice = new Invoice(1, 35);
-        Payment payment = new Payment(1, 70);
-        Waybill waybill = new Waybill(1, "Наличные");
+        Scanner scanner = new Scanner(System.in);
 
-        Order order1 = new Order(2, "Мука", 4);
-        Invoice invoice1 = new Invoice(2, 50);
-        Payment payment1 = new Payment(2, 200);
-        Waybill waybill1 = new Waybill(3, "Наличные");
+        System.out.print("Enter Order name: ");
+        String orderName = scanner.nextLine();
+        System.out.print("Enter Order quantity: ");
+        int orderQuantity = scanner.nextInt();
+        Order order = new Order(orderName, orderQuantity);
+
+        System.out.print("Enter Invoice amount: ");
+        int invoiceAmount = scanner.nextInt();
+        Invoice invoice = new Invoice(invoiceAmount);
+
+        System.out.print("Enter Payment total cost: ");
+        int paymentTotalCost = scanner.nextInt();
+        Payment payment = new Payment(paymentTotalCost);
+
+        System.out.print("Enter Waybill payment type: ");
+        String waybillPaymentType = scanner.next();
+        Waybill waybill = new Waybill(waybillPaymentType);
 
         order.setInvoice(invoice);
         invoice.setPayment(payment);
         payment.setWaybill(waybill);
 
-        order1.setInvoice(invoice1);
-        invoice1.setPayment(payment1);
-        payment1.setWaybill(waybill1);
-
         documents.add(order);
-        documents.add(order1);
     }
 
     public Document getDocumentById(int id) {
@@ -34,19 +41,16 @@ public class ViewDoc {
                 return doc;
             }
         }
-        return null;
+        return null; // Document not found
     }
 
     public void displayDocumentById(int id) {
-        Document document = getDocumentById(id);
-
-        if (document != null) {
-            if (document instanceof Order) {
-                Order order = (Order) document;
-                System.out.println("Документ найден с id: " + order.getId());
-            }
+        Document doc = getDocumentById(id);
+        if (doc != null) {
+            System.out.println("Document found:");
+            System.out.println(doc.toString());
         } else {
-            System.out.println("Документ с таким id не найден.");
+            System.out.println("Document with ID " + id + " not found.");
         }
     }
 }

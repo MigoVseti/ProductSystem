@@ -1,12 +1,13 @@
 package ProductSys;
 
 public class Invoice implements Document {
+    private static int idCounter = 1;
     private int id;
     private int amount;
     private Payment payment;
 
-    public Invoice(int id, int amount) {
-        this.id = id;
+    public Invoice(int amount) {
+        this.id = idCounter++;
         this.amount = amount;
     }
 

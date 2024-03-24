@@ -1,12 +1,13 @@
 package ProductSys;
 
 public class Payment implements Document {
+    private static int idCounter = 1;
     private int id;
     private int totalCost;
     private Waybill waybill;
 
-    public Payment(int id, int totalCost) {
-        this.id = id;
+    public Payment(int totalCost) {
+        this.id = idCounter++;
         this.totalCost = totalCost;
     }
 
